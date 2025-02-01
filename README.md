@@ -10,6 +10,25 @@ This repository contains _development material only!_
 
 
 # Build
+## Future Xo
+
+    take https://github.com/GHF/Prusa-Firmware
+    gr rename origin GHF
+    gra prusa3d https://github.com/prusa3d/Prusa-Firmware.git
+    gfa
+    gco prusa3d/<release branch e.g. MK3_3.14.1>
+    gcp prusa3d/MK3..GHF/MK3
+    # ...resolve merge conflicts...
+    PIPENV_VENV_IN_PROJECT=1 pipenv upgrade
+    pipenv shell
+    pipenv install
+    ./utils/bootstrap.py
+    cmake --fresh -S. -Bbuild -GNinja -DCMAKE_BUILD_TYPE=Release -DCMAKE_TOOLCHAIN_FILE=cmake/AvrGcc.cmake
+    cmake --build build --target MK3S_XoBear_MULTILANG
+
+    # elsewhere
+    scp ${MACHINE}:Prusa-Firmware/build/MK3S_MK3S+_XoBear_FW_3.14.1_MULTILANG.hex ~/Downloads/
+
 ## Linux
 There are two ways to build Prusa-Firmware on Linux: using [CMake](#cmake) (recommended for developers) or with [PF-build](#pf-build) which is more user-friendly for casual users.
 
